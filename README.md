@@ -2,7 +2,7 @@
 针对表数据越来越多，表数据变更也越发麻烦。
 写下了这个基于laravel的表数据变更记录模块。用于记录表字段变更过程（包含自定义数据，数据挂载，操作记录等功能）。
 ###### composer安装
-composer require git-liu/laravel-modify-records
+composer require git-liu/model-records
 ###### 创建变更记录表
 ~~~json
 php artisan migrate
