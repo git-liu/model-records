@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Mappings;
+
+use ModifyRecord\Mapping;
+
+class {{ class }} extends Mapping
+{
+    public function mapping(): array
+    {
+        return [
+            //
+        ];
+    }
+}
