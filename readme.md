@@ -190,4 +190,3 @@ $user = [
 返回指定{table_name}表中{table_id}的变更记录
 /records?table_name=&table_id=  
 ~~~
-
