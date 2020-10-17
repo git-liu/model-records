@@ -1,5 +1,5 @@
 {
-  "name": "git-liu/laravel-modify-records",
+  "name": "git-liu/model-records",
   "description": "php table modify records",
   "keywords": ["record","table"],
   "license": "MIT",
