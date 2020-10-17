@@ -1,7 +1,7 @@
 {
   "name": "git-liu/model-records",
-  "description": "php table modify records",
-  "keywords": ["record","table"],
+  "description": "php table model records",
+  "keywords": ["laravel","records","model"],
   "license": "MIT",
   "authors": [
     {
