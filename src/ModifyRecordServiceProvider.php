@@ -23,8 +23,12 @@ class ModifyRecordServiceProvider extends ServiceProvider implements DeferrableP
     
     public function register()
     {
+        $this->app->singleton('record.config', function ($app) {
+            return config('modify_record');
+        });
+        
         $this->app->bind('record', function ($app) {
-            return new RecordHandle(config('modify_record'));
+            return new RecordHandle(app('record.config'));
         });
     }
     

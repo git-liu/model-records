@@ -25,7 +25,8 @@ class MysqlDriver extends Driver
             'tb_zh_key' => $zhKey,
             'current_tb_value' => $currentValue,
             'tb_value' => $originalValue,
-            'field_type' => $type
+            'field_type' => $type,
+            'model' => get_class($this->record->model)
         ]));
     }
     
@@ -45,7 +46,6 @@ class MysqlDriver extends Driver
             'modify_type' => $type,
             'origin_table_name' => $this->record->model->getTable(),
             'origin_table_id' => $this->record->model->getKey(),
-            'model' => get_class($this->record->model)
         ]));
     }
     
