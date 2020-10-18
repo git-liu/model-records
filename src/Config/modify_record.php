@@ -23,10 +23,23 @@ return [
      * 设置Model映射
      *
      * [
-     *      User::class => UserModifyRecord::class
+     *      User::class => UserMapping::class
      * ]
      */
     'modelMappings' => [
     
     ],
+    
+    /**
+     * 设置显示时需要用到的映射（数据挂载后可以通过此参数设置映射）
+     * [
+     *      User::class => [
+     *          UserMapping::class,
+     *          //
+     *      ]
+     * ]
+     */
+    'modelRouting' => [
+    
+    ]
 ];
