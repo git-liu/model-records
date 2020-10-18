@@ -10,7 +10,7 @@ php artisan migrate
 ~~~
 ###### 发布配置文件
 ~~~json
-php artisan vendor:publish --provider=ModifyRecordServiceProvider
+php artisan vendor:publish --provider=ModifyRecord\ModifyRecordServiceProvider
 ~~~
 ###### 创建模型映射
 ~~~json
