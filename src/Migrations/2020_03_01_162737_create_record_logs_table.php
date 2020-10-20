@@ -17,7 +17,7 @@ class CreateRecordLogsTable extends Migration
             Schema::create('tb_logs', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->bigInteger('account_id')->comment('操作的用户id');
-                $table->string('table_name')->comment('变更表名称');
+                $table->string('table_name', 128)->comment('变更表名称');
                 $table->integer('table_id')->comment('变更数据id');
                 $table->string('origin_table_name')->comment('原始表名');
                 $table->string('comment', 512)->nullable()->comment('变更原因');
