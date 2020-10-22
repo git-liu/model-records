@@ -15,7 +15,7 @@ class ModifyRecordServiceProvider extends ServiceProvider implements DeferrableP
         $this->loadRoutesFrom(__DIR__.'/Routes/api.php');
         
         $this->publishes([
-            __DIR__.'/Config/modify_record.php' => config_path('modify_record.php')
+            __DIR__ . '/Config/modify-record.php' => config_path('modify-record.php')
         ]);
         
         $this->commands(MappingGenerate::class);
@@ -24,7 +24,7 @@ class ModifyRecordServiceProvider extends ServiceProvider implements DeferrableP
     public function register()
     {
         $this->app->singleton('record.config', function ($app) {
-            return config('modify_record');
+            return config('modify-record');
         });
         
         $this->app->bind('record', function ($app) {
