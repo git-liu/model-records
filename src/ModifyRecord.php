@@ -4,6 +4,7 @@
 namespace ModifyRecord;
 
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -295,5 +296,21 @@ class ModifyRecord
     public function getComment()
     {
         return $this->comment;
+    }
+    
+    /**
+     * 获取操作人
+     * @return int
+     */
+    public function getOperator()
+    {
+        if ($operator = $this->handle->getOperator()) {
+            if (is_integer($operator)) {
+                return $operator;
+            }
+            return $operator->id;
+        }
+        
+        return auth($this->handle->getConfig('auth'))->id();
     }
 }

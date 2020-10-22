@@ -18,6 +18,8 @@ class RecordHandle
      */
     protected $config;
     
+    private static $operator;
+    
     /**
      * RecordHandle constructor.
      * @param array $config
@@ -97,5 +99,23 @@ class RecordHandle
     public function getConfig($key = null)
     {
         return $key ? $this->config->get($key) : $this->config;
+    }
+    
+    /**
+     * 设置变更记录操作人
+     * @param $operator
+     */
+    public static function setOperator($operator)
+    {
+        self::$operator = $operator;
+    }
+    
+    /**
+     * 获取操作人
+     * @return mixed
+     */
+    public static function getOperator()
+    {
+        return self::$operator;
     }
 }
