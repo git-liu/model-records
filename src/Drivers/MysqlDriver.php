@@ -38,7 +38,7 @@ class MysqlDriver extends Driver
         $logClass = $this->record->getHandle()->getConfig('log');
         
         $this->operateChanges->push(new $logClass([
-            'user_id' => auth($this->record->getHandle()->getConfig('auth'))->id(),
+            'user_id' => $this->record->getOperator(),
             'table_name' => $this->record->getMapping()->table(),
             'table_id' => $this->record->getMapping()->tableId(),
             'title' => $this->record->getTitle(),
