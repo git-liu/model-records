@@ -107,7 +107,13 @@ class RecordHandle
      */
     public static function setOperator($operator)
     {
-        self::$operator = $operator;
+        if (is_callable($operator)) {
+            self::$operator = $operator;
+        } else {
+            self::$operator = function () use ($operator) {
+                return $operator;
+            };
+        }
     }
     
     /**
@@ -116,6 +122,6 @@ class RecordHandle
      */
     public static function getOperator()
     {
-        return self::$operator;
+        return call_user_func(self::$operator);
     }
 }
