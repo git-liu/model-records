@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TableLog extends Model
 {
-    public $table = 'tb_log';
+    public $table = 'tb_logs';
     
     public $guarded = ['id'];
     

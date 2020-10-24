@@ -10,7 +10,7 @@ use ModifyRecord\Contract\WithDataShow;
 
 class TableLogContent extends Model
 {
-    public $table = 'tb_log_content';
+    public $table = 'tb_log_contents';
     
     public $guarded = ['id'];
     

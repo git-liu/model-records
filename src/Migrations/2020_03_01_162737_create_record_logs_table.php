@@ -13,7 +13,7 @@ class CreateRecordLogsTable extends Migration
      */
     public function up()
     {
-        if (! Schema::hasTable('tb_log')) {
+        if (! Schema::hasTable('tb_logs')) {
             Schema::create('tb_logs', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->bigInteger('account_id')->comment('操作的用户id');
@@ -39,8 +39,6 @@ class CreateRecordLogsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('tb_logs')) {
-            Schema::dropIfExists('tb_logs');
-        }
+        Schema::dropIfExists('tb_logs');
     }
 }

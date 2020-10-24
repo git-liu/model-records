@@ -6,7 +6,7 @@ composer require git-liu/model-records
 ###### 创建变更记录表
 ~~~json
 php artisan migrate
-执行完成后会创建 tb_log，tb_log_content 两张表用于保存数据
+执行完成后会创建 tb_logs，tb_log_contents 两张表用于保存数据
 ~~~
 ###### 发布配置文件
 ~~~json
