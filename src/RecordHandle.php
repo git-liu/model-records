@@ -122,6 +122,10 @@ class RecordHandle
      */
     public static function getOperator()
     {
-        return call_user_func(self::$operator);
+        if (self::$operator) {
+            return call_user_func(self::$operator);
+        }
+        
+        return auth(config('modify_record.auth'))->user();
     }
 }
