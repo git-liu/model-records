@@ -126,6 +126,6 @@ class RecordHandle
             return call_user_func(self::$operator);
         }
         
-        return auth(config('modify_record.auth'))->user();
+        return auth(app('record.config')->get('auth'))->user();
     }
 }
