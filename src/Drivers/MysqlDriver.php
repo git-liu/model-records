@@ -44,6 +44,7 @@ class MysqlDriver extends Driver
             'title' => $this->record->getTitle(),
             'comment' => $this->record->getComment(),
             'modify_type' => $type,
+            'model' => get_class($this->record->model),
             'origin_table_name' => $this->record->model->getTable(),
             'origin_table_id' => $this->record->model->getKey(),
         ]));
