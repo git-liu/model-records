@@ -25,8 +25,8 @@ class TableLog extends Model
     {
         $auth = config('auth');
         
-        $provider = $auth['guards'][config('modify_record.auth')]['provider'];
+        $provider = $auth['guards'][config('modify-record.auth')]['provider'];
         
-        return $this->hasOne($auth['providers'][$provider]['model'], 'id', 'user_id');
+        return $this->hasOne($auth['providers'][$provider]['model'], 'id', 'account_id');
     }
 }
