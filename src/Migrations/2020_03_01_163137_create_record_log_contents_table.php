@@ -17,10 +17,12 @@ class CreateRecordLogContentsTable extends Migration
             Schema::create('tb_log_contents', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->bigInteger('log_id')->comment('变更记录id（关联record_logs.id）');
-                $table->string('field')->comment('变更字段名');
-                $table->string('current_value')->nullable()->comment('字段当前值');
-                $table->string('original_value')->nullable()->comment('字段原始值');
+                $table->string('tb_key')->comment('变更字段名');
+                $table->string('tb_zh_key')->nullable()->comment('变更字段名中文');
+                $table->string('current_tb_value')->nullable()->comment('字段当前值');
+                $table->string('tb_value')->nullable()->comment('字段原始值');
                 $table->string('field_type')->comment('字段类型');
+                $table->string('model')->comment('被变更的数据模型');
                 $table->timestamps();
         
                 $table->index(['log_id']);

@@ -35,7 +35,7 @@ class RecordController extends Controller
             ]);
         }
         
-        $logClass = config('modify_record.log');
+        $logClass = config('modify-record.log');
         if (! class_exists($logClass)) {
             throw new Exception('变更记录表不存在');
         }

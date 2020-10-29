@@ -40,7 +40,7 @@ class ModifyRecordServiceTest extends TestCase
         
         $service->setModel($user)->storeOperate('操作记录', '测试');
         
-        $this->assertDatabaseHas('tb_log', [
+        $this->assertDatabaseHas('tb_logs', [
             'table_name' => 'users',
             'table_id' => 1,
             'title' => '操作记录',
@@ -61,13 +61,13 @@ class ModifyRecordServiceTest extends TestCase
         $user->name = 'llgg';
         $user->save();
         
-        $this->assertDatabaseHas('tb_log', [
+        $this->assertDatabaseHas('tb_logs', [
             'table_name' => 'users',
             'table_id' => 1,
             'modify_type' => 'Column'
         ]);
         
-        $this->assertDatabaseHas('tb_log_content', [
+        $this->assertDatabaseHas('tb_log_contents', [
             'tb_key' => 'name',
             'current_tb_value' => 'llgg'
         ]);
@@ -90,13 +90,13 @@ class ModifyRecordServiceTest extends TestCase
             'result' => ''
         ]);
         
-        $this->assertDatabaseHas('tb_log_content', [
+        $this->assertDatabaseHas('tb_log_contents', [
             'tb_key' => 'testColumn',
             'current_tb_value' => '111',
             'tb_value' => '123'
         ]);
         
-        $this->assertDatabaseHas('tb_log_content', [
+        $this->assertDatabaseHas('tb_log_contents', [
             'tb_key' => 'testField',
             'current_tb_value' => '222',
             'tb_value' => '456'
