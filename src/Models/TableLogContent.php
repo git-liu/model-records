@@ -68,7 +68,8 @@ class TableLogContent extends Model
         if (! empty($config['modelRouting'][$model])) {
             $mappingClass = $config['modelRouting'][$model] ?? [];
         } else {
-            $mappingClass = [$config['modelMappings'][$model]] ?? [];
+            $mappingClass = isset($config['modelMappings'][$model]) ?
+                [$config['modelMappings'][$model]] : [];
         }
         $mappings = [];
         foreach ($mappingClass as $class) {

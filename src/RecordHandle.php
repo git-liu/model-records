@@ -81,7 +81,11 @@ class RecordHandle
             {
                 $mappings = [];
                 
+                $hidden = ['created_at', 'updated_at', 'deleted_at'];
                 foreach ($this->model->getAttributes() as $key => $value) {
+                    if (in_array($key, $hidden)) {
+                        continue;
+                    }
                     $type = is_array($value) ? 'array' : 'string';
                     $mappings[$key] = $this->set($key, $type);
                 }

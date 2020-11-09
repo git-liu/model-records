@@ -2,11 +2,10 @@
 
 namespace ModifyRecord;
 
-use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 use ModifyRecord\Commands\MappingGenerate;
 
-class ModifyRecordServiceProvider extends ServiceProvider implements DeferrableProvider
+class ModifyRecordServiceProvider extends ServiceProvider
 {
     public function boot()
     {
@@ -30,10 +29,5 @@ class ModifyRecordServiceProvider extends ServiceProvider implements DeferrableP
         $this->app->bind('record', function ($app) {
             return new RecordHandle(app('record.config'));
         });
-    }
-    
-    public function provides()
-    {
-        return ['record'];
     }
 }

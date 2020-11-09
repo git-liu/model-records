@@ -16,24 +16,16 @@ class RecordController extends Controller
     /**
      * 变更记录列表
      * @param Request $request
-     * @return JsonResponse
+     * @return RecordListResource
      * @throws Exception
      */
     public function index(Request $request)
     {
-        $validator = validator($request->all(), [
+        $request->validate([
             'table_name' => 'nullable|string',
             'table_id' => 'nullable|integer',
             'user_id' => 'nullable|integer'
         ]);
-        
-        if ($validator->fails()) {
-            return response()->json([
-                'code' => -1000,
-                'msg' => '参数错误',
-                'result' => ''
-            ]);
-        }
         
         $logClass = config('modify-record.log');
         if (! class_exists($logClass)) {
@@ -54,11 +46,7 @@ class RecordController extends Controller
             ])
             ->paginate($request->get('page_size', 10));
         
-        return response()->json([
-            'code' => 1,
-            'msg' => '成功',
-            'result' => new RecordListResource($records)
-        ]);
+        return new RecordListResource($records);
     }
     
     /**
