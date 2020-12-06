@@ -18,16 +18,16 @@ class MysqlDriver extends Driver
      */
     public function setColumnChanges($key, $zhKey, $currentValue, $originalValue, $type)
     {
-        $logContent = $this->record->getHandle()->getConfig('logContent');
-        
-        $this->columnChanges->push(new $logContent([
+        $this->columnChanges->push([
             'tb_key' => $key,
             'tb_zh_key' => $zhKey,
             'current_tb_value' => $currentValue,
             'tb_value' => $originalValue,
             'field_type' => $type,
-            'model' => get_class($this->record->model)
-        ]));
+            'model' => get_class($this->record->model),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
     }
     
     /**
@@ -62,8 +62,13 @@ class MysqlDriver extends Driver
                 foreach ($logs as $log) {
                     $log->save();
         
-                    if ($logContents = $this->getColumnChanges()) {
-                        $log->contents()->saveMany($logContents);
+                    if ($logContents = $this->getColumnChanges()->toArray()) {
+                        foreach ($logContents as &$content) {
+                            $content['log_id'] = $log->id;
+                        }
+                        $contentClass = $this->record->getHandle()->getConfig('logContent');
+                        $contentModel = new $contentClass;
+                        $contentModel->insert($logContents);
                     }
                 }
                 

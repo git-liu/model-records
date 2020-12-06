@@ -64,7 +64,8 @@ class ModifyRecordServiceTest extends TestCase
         $this->assertDatabaseHas('tb_logs', [
             'table_name' => 'users',
             'table_id' => 1,
-            'modify_type' => 'Column'
+            'modify_type' => 'Column',
+            'account_id' => $user->id
         ]);
         
         $this->assertDatabaseHas('tb_log_contents', [

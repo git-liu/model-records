@@ -38,7 +38,7 @@ class RecordController extends Controller
                 $query->where('table_id', $request->get('table_id'));
             })
             ->when($request->filled('user_id'), function ($query) use ($request) {
-                $query->where('user_id', $request->get('user_id'));
+                $query->where('account_id', $request->get('user_id'));
             })
             ->with([
                 'contents',

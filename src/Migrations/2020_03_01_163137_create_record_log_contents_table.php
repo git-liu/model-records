@@ -19,8 +19,8 @@ class CreateRecordLogContentsTable extends Migration
                 $table->bigInteger('log_id')->comment('变更记录id（关联record_logs.id）');
                 $table->string('tb_key')->comment('变更字段名');
                 $table->string('tb_zh_key')->nullable()->comment('变更字段名中文');
-                $table->string('current_tb_value')->nullable()->comment('字段当前值');
-                $table->string('tb_value')->nullable()->comment('字段原始值');
+                $table->longText('current_tb_value')->nullable()->comment('字段当前值');
+                $table->longText('tb_value')->nullable()->comment('字段原始值');
                 $table->string('field_type')->comment('字段类型');
                 $table->string('model')->comment('被变更的数据模型');
                 $table->timestamps();
@@ -37,6 +37,6 @@ class CreateRecordLogContentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('record_log_contents');
+        Schema::dropIfExists('tb_log_contents');
     }
 }
