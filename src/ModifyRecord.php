@@ -109,14 +109,15 @@ class ModifyRecord
      * 操作记录
      * @param string $title
      * @param string|null $comment
+     * @param string|null $column
      * @throws Throwable
      */
-    public function storeOperate(string $title, string $comment = null)
+    public function storeOperate(string $title, string $comment = null, $column = null)
     {
         $this->title = $title;
         $this->comment = $comment;
         
-        $this->driver->setOperateChanges();
+        $this->driver->setOperateChanges('Operate', $column);
         
         $this->driver->store();
     }

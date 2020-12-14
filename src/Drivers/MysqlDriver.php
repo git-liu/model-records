@@ -4,6 +4,7 @@
 namespace ModifyRecord\Drivers;
 
 use Illuminate\Support\Facades\DB;
+use ModifyRecord\Events\ModelChanged;
 use Throwable;
 
 class MysqlDriver extends Driver
@@ -32,10 +33,25 @@ class MysqlDriver extends Driver
     
     /**
      * @param string $type
+     * @param string|null $column
      */
-    public function setOperateChanges($type = 'Operate')
+    public function setOperateChanges($type = 'Operate', $column = null)
     {
         $logClass = $this->record->getHandle()->getConfig('log');
+        
+        if ($column) {
+            $mapping = $this->record->getMappings($column)[$column];
+            $this->columnChanges->push([
+                'tb_key' => $column,
+                'tb_zh_key' => $mapping->name,
+                'current_tb_value' => $this->record->getTitle(),
+                'tb_value' => null,
+                'field_type' => $type,
+                'model' => get_class($this->record->model),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
         
         $this->operateChanges->push(new $logClass([
             'account_id' => $this->record->getOperator(),
@@ -70,6 +86,8 @@ class MysqlDriver extends Driver
                         $contentModel = new $contentClass;
                         $contentModel->insert($logContents);
                     }
+                    
+                    event(new ModelChanged($log));
                 }
                 
                 DB::commit();

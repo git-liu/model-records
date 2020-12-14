@@ -37,7 +37,7 @@ abstract class Driver
     
     abstract public function setColumnChanges($key, $zhKey, $currentValue, $originalValue, $type);
     
-    abstract public function setOperateChanges($type);
+    abstract public function setOperateChanges($type, $column = null);
     
     /**
      * @return Collection

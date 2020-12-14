@@ -38,7 +38,7 @@ class ModifyRecordServiceTest extends TestCase
         
         $service = app('record');
         
-        $service->setModel($user)->storeOperate('操作记录', '测试');
+        $service->setModel($user)->storeOperate('操作记录', '测试', 'operate');
         
         $this->assertDatabaseHas('tb_logs', [
             'table_name' => 'users',
@@ -49,6 +49,10 @@ class ModifyRecordServiceTest extends TestCase
             'origin_table_name' => 'users',
             'origin_table_id' => $user->id,
             'model' => User::class
+        ])->assertDatabaseHas('tb_log_contents', [
+            'tb_key' => 'operate',
+            'tb_zh_key' => '操作',
+            'current_tb_value' => '操作记录'
         ]);
     }
     
