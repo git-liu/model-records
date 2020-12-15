@@ -236,7 +236,7 @@ class ModifyRecord
      */
     protected function setAttributes()
     {
-        $this->attributes = collect($this->model->getAttributes());
+        $this->attributes = collect($this->model->attributesToArray());
         if ($this->mapping instanceof WithExtraData) {
             foreach ($this->mapping->extraData() as $key => $value) {
                 $this->attributes->offsetSet($key, $value);
