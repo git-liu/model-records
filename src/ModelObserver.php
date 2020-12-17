@@ -6,7 +6,7 @@ namespace ModifyRecord;
 
 class ModelObserver
 {
-    public function saved($model)
+    public function saving($model)
     {
         if ($model->exists) {
             $user = RecordHandle::getOperator();

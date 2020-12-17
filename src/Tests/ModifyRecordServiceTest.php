@@ -78,6 +78,21 @@ class ModifyRecordServiceTest extends TestCase
         ]);
     }
     
+    public function testRecordDelete()
+    {
+        $user = User::first();
+        
+        $this->actingAs($user, 'api');
+        
+        $user->delete();
+        
+        $this->assertDatabaseHas('tb_logs', [
+            'table_name' => 'users',
+            'table_id' => 1,
+            'title' => '删除数据'
+        ]);
+    }
+    
     public function testRecordStoreWithMapping()
     {
         $user = User::first();
